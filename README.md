@@ -11,6 +11,7 @@
 **Files Details :-**
 	Now we are going to build the chatbot using Python but first, let us see the file structure and the type of files
 	we will be creating:
+	
 	intents.json :- The data file which has predefined patterns and responses.
 	train_model.py :- In this Python file, we wrote a script to build the model and train our chatbot.
 	Words.pkl :- This is a pickle file in which we store the words Python object that contains a list of our vocabulary.
@@ -24,6 +25,7 @@
 	Users can easily interact with the bot.
 	
 **Here are the 5 steps to create a chatbot in Python from scratch :-**
+
 	Import and load the data file
 	Preprocess data
 	Create training and testing data
