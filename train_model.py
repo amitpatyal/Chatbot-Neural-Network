@@ -2,11 +2,11 @@ import nltk
 import pickle
 import random
 import numpy as np
+import pandas as pd
 from nltk.stem import WordNetLemmatizer
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
 from keras.optimizers import SGD
-import pandas as pd
 
 words = []
 classes = []
@@ -24,15 +24,17 @@ for intent in intents['intents']:
         if intent['tag'] not in classes:
             classes.append(intent['tag'])
 
-lemmatize_words = [WordNetLemmatizer.lemmatize(word.lower()) for word in words if word not in ignore_words]
-lemmatize_words = sorted(list(set(lemmatize_words)))
+words = [WordNetLemmatizer.lemmatize(word.lower()) for word in words if word not in ignore_words]
+words = sorted(list(set(words)))
 classes = sorted(list(set(classes)))
-pickle.dump(lemmatize_words, open('words.pkl', 'wb'))
+#print (len(documents), "documents")
+#print (len(classes), "classes", classes)
+#print (len(words), "unique lemmatized words", words)
+pickle.dump(words, open('words.pkl', 'wb'))
 pickle.dump(classes, open('classes.pkl', 'wb'))
 
 
 empty_output = [0] * len(classes) # createing empty array
-
 for document in documents:
     word_bag = []
     pattern_words = document[0]
@@ -41,8 +43,8 @@ for document in documents:
     for word in words:
         word_bag.append(1) if word in pattern_words else word_bag.append(0)
         output_row = list(empty_output)
-        output_row[classes.index(document[1])] = 1
-        training.append([word_bag, output_row])
+    output_row[classes.index(document[1])] = 1
+    training.append([word_bag, output_row])
 
 random.shuffle(training)
 training = np.array(training)

@@ -12,11 +12,12 @@ model = load_model('chatbot_model.h5')
 intents = json.loads(open('intents.json').read())
 words = pickle.load(open('words.pkl','rb'))
 classes = pickle.load(open('classes.pkl','rb'))
+
 WordNetLemmatizer = WordNetLemmatizer()
 
 def GetCleanSentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
-    sentence_words = [WordNetLemmatizer.lemmatize(words.lower()) for words in sentence_words]
+    sentence_words = [WordNetLemmatizer.lemmatize(word.lower()) for word in sentence_words]
     return sentence_words
 
 def getWordsBag(sentence, words, show_details=True):
@@ -39,7 +40,7 @@ def PredictClass(sentence, model):
     return_list = []
     for r in results:
         return_list.append({"intent": classes[r[0]], "probability": str(r[1])})
-
+    return return_list
 
 def getResponse(intents, intents_json):
     tag = intents[0]['intent']

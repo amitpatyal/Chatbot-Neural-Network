@@ -18,14 +18,14 @@ def GetResponse():
 
 
 chatbot_window = Tk()
-chatbot_window.title("Hello")
+chatbot_window.title("Python Chatbot")
 chatbot_window.geometry("400x500")
 chatbot_window.resizable(width=FALSE, height=FALSE)
 ChatLog = Text(chatbot_window, bd=0, bg="white", height="8", width="50", font="Arial", )
 ChatLog.config(state=DISABLED)
 scrollbar = Scrollbar(chatbot_window, command=ChatLog.yview, cursor="heart")
 ChatLog['yscrollcommand'] = scrollbar.set
-SendButton = Button(chatbot_window, font=("Verdana", 12, 'bold'), text="Send", width="12", height=5,
+SendButton = Button(chatbot_window, font=("Verdana", 12, 'bold'), text="Send", width="7", height="5",
                     bd=0, bg="#32de97", activebackground="#3c9d9b", fg='#ffffff',
                     command=GetResponse)
 EntryBox = Text(chatbot_window, bd=0, bg="white", width="29", height="5", font="Arial")
